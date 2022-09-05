@@ -10,10 +10,12 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-@Component
-public class AuthProviderImpl implements AuthenticationProvider {
 
-  private final PersonDetailsService personDetailsService;
+//don't use it, as there are standard actions and merely use service in security config
+@Component
+public class AuthProviderImpl /*implements AuthenticationProvider */{
+
+/*  private final PersonDetailsService personDetailsService;
 
   public AuthProviderImpl(
       PersonDetailsService personDetailsService) {
@@ -35,5 +37,5 @@ public class AuthProviderImpl implements AuthenticationProvider {
   @Override
   public boolean supports(Class<?> authentication) {
     return true;
-  }
+  }*/
 }
