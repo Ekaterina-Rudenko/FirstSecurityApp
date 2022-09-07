@@ -1,6 +1,7 @@
 package by.rudenko.FirstSecurityApp.config;
 
 import by.rudenko.FirstSecurityApp.services.PersonDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,12 +15,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final PersonDetailsService personDetailsService;
 
+  @Autowired
   public SecurityConfig(
       PersonDetailsService personDetailsService) {
     this.personDetailsService = personDetailsService;
   }
 
-  //configure spring security itself, what page is for login, errors etc
+  //configure spring security itself, what page is for login, errors etc.
   //configure authorization
   @Override
   protected void configure(HttpSecurity http) throws Exception {
@@ -34,11 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .defaultSuccessUrl("/hello", true)
         .failureUrl("/auth/login?error");
   }
-
   //Configure authentication
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    /*auth.authenticationProvider(authProvider);*/
     auth.userDetailsService(personDetailsService);
   }
 
