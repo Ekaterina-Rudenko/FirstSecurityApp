@@ -2,7 +2,9 @@ package by.rudenko.FirstSecurityApp.security;
 
 import by.rudenko.FirstSecurityApp.models.Person;
 import java.util.Collection;
+import java.util.Collections;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class PersonDetails implements UserDetails {
@@ -14,7 +16,7 @@ private final Person person;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return null;//Get roles from db and collections of authorities
+    return Collections.singletonList(new SimpleGrantedAuthority(person.getRole()));//Get roles from db and collections of authorities
   }
 
   @Override
